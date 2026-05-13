@@ -3,48 +3,43 @@ using UnityEngine.InputSystem;
 
 public class MovePlayer : MonoBehaviour
 {
-    public float speedplayer = 5.0f;
-    public float speedRotation = 200f;
-
-    private float x;
-    private float y;
+    public float speedplayer = 10.0f;
 
     private Vector2 movementInput;
     private Animator animator;
-    private CharacterController controller; // NUEVO: Para usar el componente que agregamos
+    private CharacterController controller;
 
     public void Start()
     {
         animator = GetComponent<Animator>();
-        controller = GetComponent<CharacterController>(); // Buscamos el componente al empezar
+        controller = GetComponent<CharacterController>();
     }
 
     public void Update()
     {
-        x = movementInput.x;
-        y = movementInput.y;
+        // 1. Calculamos las direcciones relativas al personaje
+        // transform.forward es "hacia adelante"
+        // transform.right es "hacia la derecha"
+        Vector3 moveForward = transform.forward * movementInput.y;
+        Vector3 moveSide = transform.right * movementInput.x;
 
-        // 1. Rotación (Girar a la muñeca)
-        transform.Rotate(0, x * speedRotation * Time.deltaTime, 0);
+        // 2. Combinamos ambas direcciones en un solo vector de movimiento
+        Vector3 direction = moveForward + moveSide;
 
-        // 2. Movimiento con Character Controller (Esto evita que atraviese el suelo)
-        // Creamos un vector hacia adelante relativo a donde mira la muñeca
-        Vector3 forward = transform.TransformDirection(Vector3.forward);
-        float curSpeed = speedplayer * y;
+        // 3. Movemos al personaje
+        // SimpleMove ya aplica gravedad automáticamente
+        controller.SimpleMove(direction * speedplayer);
 
-        // SimpleMove aplica gravedad automáticamente y mueve al personaje
-        controller.SimpleMove(forward * curSpeed);
-
-        // 3. Animaciones
+        // 4. Animaciones
         if (animator != null)
         {
-            animator.SetFloat("VelX", x);
-            animator.SetFloat("VelY", y);
+            // Enviamos los valores al Animator para que sepa si vamos de lado o frente
+            animator.SetFloat("VelX", movementInput.x);
+            animator.SetFloat("VelY", movementInput.y);
             animator.SetFloat("Blend", movementInput.magnitude);
         }
     }
 
-    // El Player Input llama a esta función automáticamente
     public void OnMove(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<Vector2>();

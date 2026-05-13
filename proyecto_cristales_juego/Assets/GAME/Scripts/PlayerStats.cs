@@ -1,26 +1,35 @@
 using UnityEngine;
+using TMPro; // Para usar TextMeshPro
 using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
     public int vidas = 3;
+    public TextMeshProUGUI textoVidas; // Arrastra aquí el nuevo texto de vidas
 
-    // EL ARREGLO ESTÁ AQUÍ: Agregamos "int cantidad"
+    void Start()
+    {
+        ActualizarInterfaz();
+    }
+
     public void RecibirDaño(int cantidad)
     {
-        vidas -= cantidad; // Resta el daño recibido a las vidas totales
-        Debug.Log("¡Auch! Vidas restantes: " + vidas);
+        vidas -= cantidad;
+        ActualizarInterfaz();
 
         if (vidas <= 0)
         {
-            Morir();
+            Debug.Log("¡GAME OVER!");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            // Aquí podrías reiniciar la escena o mover al personaje al inicio
         }
     }
 
-    void Morir()
+    void ActualizarInterfaz()
     {
-        Debug.Log("Game Over");
-        // Reinicia la escena como pide el PDF del proyecto
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (textoVidas != null)
+        {
+            textoVidas.text = "Vidas: " + vidas;
+        }
     }
 }

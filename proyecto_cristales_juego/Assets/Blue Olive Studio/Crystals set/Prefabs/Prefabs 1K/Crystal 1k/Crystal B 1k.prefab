@@ -93,9 +93,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: c4dea5893002b2143bbce2543423a5fa, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 4244ecf72fb22e543841ba44dcb6b3f6, type: 2}
+      objectReference: {fileID: 2100000, guid: 6e2c602afc91ede4d9a2c7454bc43bd3, type: 2}
     - target: {fileID: 919132149155446097, guid: c4dea5893002b2143bbce2543423a5fa, type: 3}
       propertyPath: m_Name
       value: Amethyst Crystal-B
