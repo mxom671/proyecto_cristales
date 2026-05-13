@@ -1,31 +1,47 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MovePlayer : MonoBehaviour
 {
-    public float speed = 5f;
-    public Transform camara;
+    public float speedplayer = 10.0f;
+
+    private Vector2 movementInput;
+    private Animator animator;
     private CharacterController controller;
 
-    void Start()
+    public void Start()
     {
+        animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
     }
 
-    void Update()
+    public void Update()
     {
-        // Usamos el sistema de siempre
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        // 1. Calculamos las direcciones relativas al personaje
+        // transform.forward es "hacia adelante"
+        // transform.right es "hacia la derecha"
+        Vector3 moveForward = transform.forward * movementInput.y;
+        Vector3 moveSide = transform.right * movementInput.x;
 
-        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+        // 2. Combinamos ambas direcciones en un solo vector de movimiento
+        Vector3 direction = moveForward + moveSide;
 
-        if (direction.magnitude >= 0.1f)
+        // 3. Movemos al personaje
+        // SimpleMove ya aplica gravedad automáticamente
+        controller.SimpleMove(direction * speedplayer);
+
+        // 4. Animaciones
+        if (animator != null)
         {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + camara.eulerAngles.y;
-            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
-
-            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            controller.Move(moveDir.normalized * speed * Time.deltaTime);
+            // Enviamos los valores al Animator para que sepa si vamos de lado o frente
+            animator.SetFloat("VelX", movementInput.x);
+            animator.SetFloat("VelY", movementInput.y);
+            animator.SetFloat("Blend", movementInput.magnitude);
         }
+    }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        movementInput = context.ReadValue<Vector2>();
     }
 }

@@ -1,15 +1,16 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class DañoLava : MonoBehaviour
+public class DanoLava : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        // Solo si lo que entra es el Jugador (X Bot)
-        if (other.CompareTag("Player") || other.name.Contains("mixamorig"))
+        // Buscamos el script de las vidas en la muñeca
+        PlayerStats stats = other.GetComponent<PlayerStats>();
+
+        if (stats != null)
         {
-            Debug.Log("¡Caíste en la lava de verdad!");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Debug.Log("¡QUEMA! Quitándole vida al jugador...");
+            stats.RecibirDaño(1); // Le quita 1 vida
         }
     }
 }
