@@ -131,54 +131,13 @@ GameObject:
   - component: {fileID: 7377694}
   - component: {fileID: 7377693}
   - component: {fileID: 7377692}
-  - component: {fileID: 7377691}
-  - component: {fileID: 7377690}
   m_Layer: 0
   m_Name: Lava (4)
-  m_TagString: Untagged
+  m_TagString: Lava
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &7377690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7377689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0a84528d0a40b645bc22491659e581d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DanoLava
---- !u!54 &7377691
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7377689}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &7377692
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -692,11 +651,9 @@ GameObject:
   - component: {fileID: 281586194}
   - component: {fileID: 281586193}
   - component: {fileID: 281586192}
-  - component: {fileID: 281586196}
-  - component: {fileID: 281586197}
   m_Layer: 0
   m_Name: Lava
-  m_TagString: Untagged
+  m_TagString: Lava
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -793,45 +750,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &281586196
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 281586191}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &281586197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 281586191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0a84528d0a40b645bc22491659e581d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DanoLava
 --- !u!1 &282980005
 GameObject:
   m_ObjectHideFlags: 0
@@ -1219,54 +1137,13 @@ GameObject:
   - component: {fileID: 458814715}
   - component: {fileID: 458814714}
   - component: {fileID: 458814713}
-  - component: {fileID: 458814712}
-  - component: {fileID: 458814711}
   m_Layer: 0
   m_Name: Lava (2)
-  m_TagString: Untagged
+  m_TagString: Lava
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &458814711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 458814710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0a84528d0a40b645bc22491659e581d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DanoLava
---- !u!54 &458814712
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 458814710}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &458814713
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1371,54 +1248,13 @@ GameObject:
   - component: {fileID: 608283330}
   - component: {fileID: 608283329}
   - component: {fileID: 608283328}
-  - component: {fileID: 608283327}
-  - component: {fileID: 608283326}
   m_Layer: 0
   m_Name: Lava (1)
-  m_TagString: Untagged
+  m_TagString: Lava
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &608283326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 608283325}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0a84528d0a40b645bc22491659e581d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DanoLava
---- !u!54 &608283327
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 608283325}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &608283328
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2504,7 +2340,7 @@ PrefabInstance:
     - target: {fileID: 6148737315974723067, guid: b5f81bab7220a9f4882bc409370e5224, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -7557540490364101082, guid: b5f81bab7220a9f4882bc409370e5224, type: 3}
+      objectReference: {fileID: 2100000, guid: 30d2acb8e409e244898eb5f27198f6fc, type: 2}
     - target: {fileID: 7882376022164389543, guid: b5f81bab7220a9f4882bc409370e5224, type: 3}
       propertyPath: m_TagString
       value: Untagged
@@ -2513,9 +2349,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b5f81bab7220a9f4882bc409370e5224, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 996773235}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b5f81bab7220a9f4882bc409370e5224, type: 3}
       insertIndex: -1
       addedObject: {fileID: 996773233}
@@ -2537,9 +2370,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b5f81bab7220a9f4882bc409370e5224, type: 3}
       insertIndex: -1
       addedObject: {fileID: 996773234}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b5f81bab7220a9f4882bc409370e5224, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 996773243}
     - targetCorrespondingSourceObject: {fileID: 1082271958561512970, guid: b5f81bab7220a9f4882bc409370e5224, type: 3}
       insertIndex: -1
       addedObject: {fileID: 407564716}
@@ -2596,19 +2426,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &996773235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 996773232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ec92e74f91cac1438ebcf485fd92102, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MovePlayer
-  speedplayer: 15
 --- !u!114 &996773238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2622,6 +2439,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovePlayer
   speedplayer: 5
+  fuerzaSalto: 2.5
+  gravedad: -40
+  velocidadGiro: 10
 --- !u!114 &996773239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2634,11 +2454,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3298bc9c52444e248905cbebcd0bbc72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KillZone
-  puntoDeRetorno: {fileID: 867589559}
-  distanciaMaximaAlSuelo: 5
-  capaSuelo:
-    serializedVersion: 2
-    m_Bits: 64
+  "da\xF1o": 1
+  fuerzaDeRebote: 8
 --- !u!114 &996773241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2757,29 +2574,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!136 &996773243
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 996773232}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &996773244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3454,54 +3248,13 @@ GameObject:
   - component: {fileID: 1545484979}
   - component: {fileID: 1545484978}
   - component: {fileID: 1545484977}
-  - component: {fileID: 1545484976}
-  - component: {fileID: 1545484975}
   m_Layer: 0
   m_Name: Lava (3)
-  m_TagString: Untagged
+  m_TagString: Lava
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1545484975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1545484974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0a84528d0a40b645bc22491659e581d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DanoLava
---- !u!54 &1545484976
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1545484974}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &1545484977
 BoxCollider:
   m_ObjectHideFlags: 0
