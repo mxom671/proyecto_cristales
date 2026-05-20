@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,7 +18,7 @@ public class MovePlayer1 : MonoBehaviour
 
     [Header("Mecánica de Escalar")]
     public float climbSpeed = 3.0f;
-    public float climbCheckDistance = 0.7f;
+    public float climbCheckDistance = 1.2f;
     public LayerMask climbableLayer;
     private bool isClimbing = false;
     private bool canStartClimb = false;
@@ -139,14 +140,30 @@ public class MovePlayer1 : MonoBehaviour
     }
 
     private void UpdateAnimator()
-    {
-        if (animator == null) return;
+{
+    if (animator == null) return;
 
-        animator.SetFloat("VelX", x);
-        animator.SetFloat("VelY", y);
-        animator.SetFloat("Blend", isClimbing ? 0 : movementInput.magnitude);
-        animator.SetBool("Climb", isClimbing);
+    // 1. Parámetros de movimiento normales
+    animator.SetFloat("VelX", x);
+    animator.SetFloat("VelY", y);
+    animator.SetFloat("Blend", isClimbing ? 0 : movementInput.magnitude);
+    
+    // 2. Estado de Escalado
+    animator.SetBool("Climb", isClimbing);
+
+    // 3. ¡SOLUCIÓN AL SALTO! 
+    // Si el personaje está tocando el suelo (isGrounded), obligamos al Animator 
+    // a apagar el estado de salto para que libere las demás animaciones.
+    if (isGrounded)
+    {
+        // Si tu parámetro 'Jump' es un Booleano (Bool):
+        animator.SetBool("Jump", false);
+
+        // Si tu parámetro 'Jump' es un Trigger, a veces se acumula un salto extra. 
+        // Esta línea limpia cualquier disparo de salto pendiente:
+        animator.ResetTrigger("Jump");
     }
+}
 
     // Métodos del NUEVO INPUT SYSTEM
     public void OnMove(InputAction.CallbackContext context)
