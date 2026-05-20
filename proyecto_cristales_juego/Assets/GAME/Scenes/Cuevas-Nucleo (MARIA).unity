@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: f48bceb0ec852c94eab4485a02aa07ca, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -224,7 +224,7 @@ Transform:
   m_GameObject: {fileID: 7377689}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.19, y: 0.14, z: 8.57}
+  m_LocalPosition: {x: -8.19, y: 144.14, z: 8.57}
   m_LocalScale: {x: 3.6346, y: 0.18979, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -744,7 +744,7 @@ Transform:
   m_GameObject: {fileID: 281586191}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.91, y: 0.14, z: -0.52829}
+  m_LocalPosition: {x: 7.91, y: 144.14, z: -0.52829}
   m_LocalScale: {x: 3.6346, y: 0.18979, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -925,7 +925,7 @@ Transform:
   m_GameObject: {fileID: 287560336}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 144, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1015,7 +1015,7 @@ Transform:
   m_GameObject: {fileID: 340511715}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 144, z: 0}
   m_LocalScale: {x: 20, y: 0.3, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1042,63 +1042,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1001 &383993576
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 966607810235432403, guid: 9f384634ee9ff0f458632acd40ffc4f4, type: 3}
-      propertyPath: m_Name
-      value: Crystal B 1k
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137976354966902745, guid: 9f384634ee9ff0f458632acd40ffc4f4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 17.675001
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137976354966902745, guid: 9f384634ee9ff0f458632acd40ffc4f4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137976354966902745, guid: 9f384634ee9ff0f458632acd40ffc4f4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -2.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137976354966902745, guid: 9f384634ee9ff0f458632acd40ffc4f4, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137976354966902745, guid: 9f384634ee9ff0f458632acd40ffc4f4, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137976354966902745, guid: 9f384634ee9ff0f458632acd40ffc4f4, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137976354966902745, guid: 9f384634ee9ff0f458632acd40ffc4f4, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137976354966902745, guid: 9f384634ee9ff0f458632acd40ffc4f4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137976354966902745, guid: 9f384634ee9ff0f458632acd40ffc4f4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137976354966902745, guid: 9f384634ee9ff0f458632acd40ffc4f4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9f384634ee9ff0f458632acd40ffc4f4, type: 3}
 --- !u!1 &407564713 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1082271958561512970, guid: b5f81bab7220a9f4882bc409370e5224, type: 3}
@@ -1230,7 +1173,7 @@ Transform:
   m_GameObject: {fileID: 458814710}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.19, y: 0.14, z: -0.52829}
+  m_LocalPosition: {x: -8.19, y: 144.14, z: -0.52829}
   m_LocalScale: {x: 3.6346, y: 0.18979, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1341,7 +1284,7 @@ Transform:
   m_GameObject: {fileID: 608283325}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.43, y: 0.14, z: -8.95}
+  m_LocalPosition: {x: -5.43, y: 144.14, z: -8.95}
   m_LocalScale: {x: 8.647077, y: 0.18979, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1359,6 +1302,7 @@ GameObject:
   - component: {fileID: 693671611}
   - component: {fileID: 693671610}
   - component: {fileID: 693671609}
+  - component: {fileID: 693671613}
   m_Layer: 0
   m_Name: Energia
   m_TagString: Cristal
@@ -1454,7 +1398,7 @@ Transform:
   m_GameObject: {fileID: 693671608}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.45, y: 1.9, z: 0.8}
+  m_LocalPosition: {x: 7.45, y: 145.9, z: 0.8}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1462,6 +1406,19 @@ Transform:
   - {fileID: 1420042922}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &693671613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693671608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a00b52bc7d7105b409290385c0d1ee58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemRecogible
+  nombreDelItem: Energia
 --- !u!1 &762172217
 GameObject:
   m_ObjectHideFlags: 0
@@ -1702,7 +1659,7 @@ Transform:
   m_GameObject: {fileID: 762172217}
   serializedVersion: 2
   m_LocalRotation: {x: 0.22975284, y: 0.00000015992813, z: -0.00000003775389, w: 0.9732491}
-  m_LocalPosition: {x: -6.0245614, y: 5.15, z: -13.137608}
+  m_LocalPosition: {x: -6.0245614, y: 149.15, z: -13.137608}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1720,6 +1677,7 @@ GameObject:
   - component: {fileID: 782317116}
   - component: {fileID: 782317115}
   - component: {fileID: 782317114}
+  - component: {fileID: 782317118}
   m_Layer: 0
   m_Name: Cristal de Nucleo
   m_TagString: Cristal
@@ -1815,7 +1773,7 @@ Transform:
   m_GameObject: {fileID: 782317113}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.82, y: 1.9, z: 8.27}
+  m_LocalPosition: {x: -1.82, y: 145.9, z: 8.27}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1823,6 +1781,19 @@ Transform:
   - {fileID: 1457754139}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &782317118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782317113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a00b52bc7d7105b409290385c0d1ee58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemRecogible
+  nombreDelItem: Cristal de Nucleo
 --- !u!1 &842104146
 GameObject:
   m_ObjectHideFlags: 0
@@ -2042,7 +2013,7 @@ Transform:
   m_GameObject: {fileID: 867446682}
   serializedVersion: 2
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 147, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2102,7 +2073,7 @@ Transform:
   m_GameObject: {fileID: 867589558}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.2905, y: 0, z: 5.77188}
+  m_LocalPosition: {x: -2.2905, y: 144, z: 5.77188}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2239,7 +2210,7 @@ Transform:
   m_GameObject: {fileID: 899184993}
   serializedVersion: 2
   m_LocalRotation: {x: 0.26031867, y: 0.019979855, z: -0.005389697, w: 0.96530104}
-  m_LocalPosition: {x: 0.44433445, y: 9.380259, z: -18.72397}
+  m_LocalPosition: {x: 0.44433445, y: 153.38026, z: -18.72397}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2271,7 +2242,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b5f81bab7220a9f4882bc409370e5224, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.3
+      value: 144.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b5f81bab7220a9f4882bc409370e5224, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2442,6 +2413,8 @@ MonoBehaviour:
   fuerzaSalto: 2.5
   gravedad: -40
   velocidadGiro: 10
+  limiteCaida: -15
+  puntoDeInicio: {x: 0, y: 0, z: 0}
 --- !u!114 &996773239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2806,6 +2779,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f384634ee9ff0f458632acd40ffc4f4, type: 3}
+--- !u!1001 &1096637924
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4793742074439958470, guid: 35401306bedd5bf4a8fc0357a5475a58, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -20.87568
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793742074439958470, guid: 35401306bedd5bf4a8fc0357a5475a58, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793742074439958470, guid: 35401306bedd5bf4a8fc0357a5475a58, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -107.06311
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793742074439958470, guid: 35401306bedd5bf4a8fc0357a5475a58, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793742074439958470, guid: 35401306bedd5bf4a8fc0357a5475a58, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793742074439958470, guid: 35401306bedd5bf4a8fc0357a5475a58, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793742074439958470, guid: 35401306bedd5bf4a8fc0357a5475a58, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793742074439958470, guid: 35401306bedd5bf4a8fc0357a5475a58, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793742074439958470, guid: 35401306bedd5bf4a8fc0357a5475a58, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793742074439958470, guid: 35401306bedd5bf4a8fc0357a5475a58, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312038842993395877, guid: 35401306bedd5bf4a8fc0357a5475a58, type: 3}
+      propertyPath: m_Name
+      value: Demonstration
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 35401306bedd5bf4a8fc0357a5475a58, type: 3}
 --- !u!1001 &1101739786
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2957,7 +2987,7 @@ Transform:
   m_GameObject: {fileID: 1107725926}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 144, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3341,7 +3371,7 @@ Transform:
   m_GameObject: {fileID: 1545484974}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.44, y: 0.14, z: 8.71}
+  m_LocalPosition: {x: 5.44, y: 144.14, z: 8.71}
   m_LocalScale: {x: 8.647077, y: 0.18979, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3464,6 +3494,7 @@ GameObject:
   - component: {fileID: 1723522503}
   - component: {fileID: 1723522502}
   - component: {fileID: 1723522501}
+  - component: {fileID: 1723522505}
   m_Layer: 0
   m_Name: Cristal de Nucleo
   m_TagString: Cristal
@@ -3559,7 +3590,7 @@ Transform:
   m_GameObject: {fileID: 1723522500}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.62, y: 1.9, z: -7}
+  m_LocalPosition: {x: -7.62, y: 145.9, z: -7}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3567,6 +3598,19 @@ Transform:
   - {fileID: 1101739787}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1723522505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723522500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a00b52bc7d7105b409290385c0d1ee58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemRecogible
+  nombreDelItem: Cristal de Nucleo
 --- !u!1 &1729725152
 GameObject:
   m_ObjectHideFlags: 0
@@ -3579,6 +3623,7 @@ GameObject:
   - component: {fileID: 1729725155}
   - component: {fileID: 1729725154}
   - component: {fileID: 1729725153}
+  - component: {fileID: 1729725157}
   m_Layer: 0
   m_Name: "Energ\xEDa"
   m_TagString: Cristal
@@ -3674,7 +3719,7 @@ Transform:
   m_GameObject: {fileID: 1729725152}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.53, y: 1.9, z: 1.78}
+  m_LocalPosition: {x: -7.53, y: 145.9, z: 1.78}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3682,6 +3727,19 @@ Transform:
   - {fileID: 2047378315}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1729725157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729725152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a00b52bc7d7105b409290385c0d1ee58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemRecogible
+  nombreDelItem: Energia
 --- !u!1 &1784808445
 GameObject:
   m_ObjectHideFlags: 0
@@ -3821,6 +3879,7 @@ GameObject:
   - component: {fileID: 1919515359}
   - component: {fileID: 1919515358}
   - component: {fileID: 1919515357}
+  - component: {fileID: 1919515361}
   m_Layer: 0
   m_Name: Cristal de Nucleo
   m_TagString: Cristal
@@ -3916,7 +3975,7 @@ Transform:
   m_GameObject: {fileID: 1919515356}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.01, y: 1.9, z: -9.04}
+  m_LocalPosition: {x: 4.01, y: 145.9, z: -9.04}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3924,6 +3983,19 @@ Transform:
   - {fileID: 1947632083}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1919515361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919515356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a00b52bc7d7105b409290385c0d1ee58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemRecogible
+  nombreDelItem: Cristal de Nucleo
 --- !u!1001 &1947632082
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4166,4 +4238,4 @@ SceneRoots:
   - {fileID: 1602769677}
   - {fileID: 287560338}
   - {fileID: 1107725929}
-  - {fileID: 383993576}
+  - {fileID: 1096637924}
