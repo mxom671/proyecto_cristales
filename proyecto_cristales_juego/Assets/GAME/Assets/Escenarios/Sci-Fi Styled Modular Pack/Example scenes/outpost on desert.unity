@@ -4044,6 +4044,10 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 0.000000011920945
       objectReference: {fileID: 0}
+    - target: {fileID: 9573410, guid: 2d927feb0fbf1a7429c095369d395de7, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: b5f81bab7220a9f4882bc409370e5224, type: 3}
     - target: {fileID: 11487808, guid: 2d927feb0fbf1a7429c095369d395de7, type: 3}
       propertyPath: character
       value: 
