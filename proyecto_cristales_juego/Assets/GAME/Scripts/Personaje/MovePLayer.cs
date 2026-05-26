@@ -3,10 +3,15 @@ using UnityEngine.InputSystem;
 
 public class MovePlayer : MonoBehaviour
 {
+    [Header("Configuración de Movimiento")]
     public float speedplayer = 10.0f;
     public float fuerzaSalto = 6.0f;
     public float gravedad = -20.0f;
-    public float velocidadGiro = 10.0f; // Para controlar qué tan rápido gira el cuerpo
+    public float velocidadGiro = 10.0f;
+
+    [Header("Configuración de Respawn")]
+    public float limiteCaida = -15.0f; // Altura a la que el personaje "muere"
+    public Vector3 puntoDeInicio;    // Posición de reaparición
 
     private Vector2 movementInput;
     private Vector3 velocidadVertical;
@@ -17,6 +22,9 @@ public class MovePlayer : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
+
+        // Al iniciar, guardamos la posición actual como el punto de inicio
+        puntoDeInicio = transform.position;
     }
 
     public void Update()
@@ -24,51 +32,67 @@ public class MovePlayer : MonoBehaviour
         // 1. Detectar si está en el suelo
         bool estaEnElSuelo = controller.isGrounded;
 
-        if (estaEnElSuelo && velocidadVertical.y < 0)
+        if (estaEnElSuelo)
         {
-            velocidadVertical.y = -2f;
+            if (velocidadVertical.y < 0)
+            {
+                velocidadVertical.y = -2f;
+            }
+
+            // Limpiamos el Trigger de salto al tocar el suelo para evitar dobles saltos raros
+            if (animator != null) animator.ResetTrigger("Salto");
         }
 
-        // 2. Movimiento Horizontal (Calculado respecto al mundo para que gire bien)
+        // 2. SISTEMA DE RESPAWN (Si cae al vacío)
+        if (transform.position.y < limiteCaida)
+        {
+            EjecutarRespawn();
+        }
+
+        // 3. Movimiento Horizontal
         Vector3 direction = new Vector3(movementInput.x, 0, movementInput.y);
 
         if (direction.magnitude > 0.1f)
         {
-            // Mover al personaje
             controller.Move(direction * speedplayer * Time.deltaTime);
 
-            // --- ESTO HACE QUE EL X BOT GIRE EL CUERPO ---
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * velocidadGiro);
         }
 
-        // 3. SALTO MANUAL
+        // 4. SALTO MANUAL
         if (Keyboard.current.spaceKey.wasPressedThisFrame && estaEnElSuelo)
         {
             velocidadVertical.y = Mathf.Sqrt(fuerzaSalto * -2f * gravedad);
-
-            // Avisar al Animator para que salte
             if (animator != null) animator.SetTrigger("Salto");
         }
 
-        // 4. Aplicar Gravedad
+        // 5. Aplicar Gravedad
         velocidadVertical.y += gravedad * Time.deltaTime;
         controller.Move(velocidadVertical * Time.deltaTime);
 
-        // 5. Animaciones
+        // 6. Animaciones
         if (animator != null)
         {
-            // Enviamos la magnitud (Blend) para Idle/Walk/Run
             animator.SetFloat("Blend", movementInput.magnitude);
-            // Enviamos si está en el suelo para salir de la animación de salto
             animator.SetBool("EstaEnElSuelo", estaEnElSuelo);
         }
+    }
+
+    public void EjecutarRespawn()
+    {
+        // Para teletransportar un CharacterController, debemos apagarlo y prenderlo
+        controller.enabled = false;
+        transform.position = puntoDeInicio;
+        velocidadVertical = Vector3.zero; // Reseteamos la velocidad de caída
+        controller.enabled = true;
+
+        Debug.Log("¡X Bot ha vuelto al inicio!");
     }
 
     public void AplicarImpulsoLava(float fuerza)
     {
         velocidadVertical.y = fuerza;
-        // También activamos la animación si toca la lava
         if (animator != null) animator.SetTrigger("Salto");
     }
 

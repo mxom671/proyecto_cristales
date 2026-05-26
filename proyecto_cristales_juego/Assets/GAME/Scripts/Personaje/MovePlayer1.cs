@@ -7,11 +7,11 @@ public class MovePlayer1 : MonoBehaviour
 {
     [Header("Movimiento y Rotación")]
     public float speedplayer = 5.0f;
-    public float speedRotation = 200f;
+    public float speedRotation = 10.0f;
 
     [Header("Físicas de Salto")]
     public float jumpForce = 5.0f;
-    public Transform groundCheck; // <-- ¡AQUÍ ESTÁ! Ahora sí aparecerá en el Inspector
+    public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
     private bool isGrounded;
@@ -22,7 +22,7 @@ public class MovePlayer1 : MonoBehaviour
     public LayerMask climbableLayer;
     private bool isClimbing = false;
     private bool canStartClimb = false;
-    public string climbButton = "Climb"; // Tecla del Input Manager clásico (ej: 'C')
+    public string climbButton = "Climb";
 
     // Variables de control interno
     private float x;
@@ -37,29 +37,23 @@ public class MovePlayer1 : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
 
-        // Congelamos SOLO la rotación física para que el personaje no se caiga como un tronco, 
-        // pero permitimos que las posiciones (X, Y, Z) se muevan libremente por código.
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
     }
 
     public void Update()
     {
-        // 1. Detectar Suelo y Árboles
         CheckSurroundings();
 
-        // 2. Detectar tecla de escalado (Input Manager clásico)
         if (Input.GetButtonDown(climbButton))
         {
             ToggleClimb();
         }
 
-        // 3. Controlar Animaciones
         UpdateAnimator();
     }
 
     public void FixedUpdate()
     {
-        // El movimiento físico SIEMPRE es mejor hacerlo en FixedUpdate para evitar tirones
         if (!isClimbing)
         {
             PerformNormalMovement();
@@ -72,7 +66,6 @@ public class MovePlayer1 : MonoBehaviour
 
     private void CheckSurroundings()
     {
-        // Chequeo de suelo usando el objeto GroundCheck que vas a asignar
         if (groundCheck != null)
         {
             isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
@@ -82,11 +75,9 @@ public class MovePlayer1 : MonoBehaviour
             isGrounded = false;
         }
 
-        // Chequeo de árboles (Rayo hacia adelante desde la mitad del cuerpo)
         Vector3 rayOrigin = transform.position + Vector3.up * 1.0f;
         canStartClimb = Physics.Raycast(rayOrigin, transform.forward, climbCheckDistance, climbableLayer);
 
-        // Dibujar rayos en la vista de Escena para que veas si están tocando algo (Verde = toca, Rojo = no toca)
         Debug.DrawRay(rayOrigin, transform.forward * climbCheckDistance, canStartClimb ? Color.green : Color.red);
     }
 
@@ -95,26 +86,30 @@ public class MovePlayer1 : MonoBehaviour
         x = movementInput.x;
         y = movementInput.y;
 
-        // Rotación por Transform (sigue funcionando igual)
-        transform.Rotate(0, x * speedRotation * Time.deltaTime, 0);
+        Vector3 moveDirection = new Vector3(x, 0, y).normalized;
 
-        // MOVIMIENTO CORREGIDO: Movemos el Rigidbody hacia adelante/atrás usando su propia dirección
-        Vector3 moveDirection = transform.forward * y * speedplayer;
+        if (moveDirection.magnitude > 0.1f)
+        {
+            Vector3 velocity = moveDirection * speedplayer;
+            rb.linearVelocity = new Vector3(velocity.x, rb.linearVelocity.y, velocity.z);
 
-        // Mantenemos la velocidad vertical actual del rigidbody (para que caiga por gravedad si no está en el suelo)
-        rb.linearVelocity = new Vector3(moveDirection.x, rb.linearVelocity.y, moveDirection.z);
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speedRotation * Time.fixedDeltaTime);
+        }
+        else
+        {
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+        }
     }
 
     private void PerformClimbMovement()
     {
-        // Si estás escalando y te alejas del árbol, te caes automáticamente
         if (!canStartClimb)
         {
             StopClimbing();
             return;
         }
 
-        // Movimiento vertical usando la W y S (eje Y del movementInput)
         float verticalClimb = movementInput.y * climbSpeed;
         rb.linearVelocity = new Vector3(0, verticalClimb, 0);
     }
@@ -140,32 +135,39 @@ public class MovePlayer1 : MonoBehaviour
     }
 
     private void UpdateAnimator()
-{
-    if (animator == null) return;
-
-    // 1. Parámetros de movimiento normales
-    animator.SetFloat("VelX", x);
-    animator.SetFloat("VelY", y);
-    animator.SetFloat("Blend", isClimbing ? 0 : movementInput.magnitude);
-    
-    // 2. Estado de Escalado
-    animator.SetBool("Climb", isClimbing);
-
-    // 3. ¡SOLUCIÓN AL SALTO! 
-    // Si el personaje está tocando el suelo (isGrounded), obligamos al Animator 
-    // a apagar el estado de salto para que libere las demás animaciones.
-    if (isGrounded)
     {
-        // Si tu parámetro 'Jump' es un Booleano (Bool):
-        animator.SetBool("Jump", false);
+        if (animator == null) return;
 
-        // Si tu parámetro 'Jump' es un Trigger, a veces se acumula un salto extra. 
-        // Esta línea limpia cualquier disparo de salto pendiente:
-        animator.ResetTrigger("Jump");
+        animator.SetFloat("VelX", x);
+        animator.SetFloat("VelY", y);
+
+        animator.SetFloat("Blend", isClimbing ? 0 : movementInput.magnitude);
+
+        animator.SetBool("Climb", isClimbing);
+
+        if (isGrounded)
+        {
+            animator.SetBool("Jump", false);
+            animator.ResetTrigger("Jump");
+        }
     }
-}
 
-    // Métodos del NUEVO INPUT SYSTEM
+    // NUEVA FUNCIÓN: Ejecuta el rebote físico hacia arriba cuando tocas la lava
+    public void AplicarImpulsoLava(float fuerza)
+    {
+        if (rb != null)
+        {
+            // Reseteamos velocidad vertical actual para un rebote limpio
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+            rb.AddForce(Vector3.up * fuerza, ForceMode.Impulse);
+        }
+
+        if (animator != null)
+        {
+            animator.SetTrigger("Jump");
+        }
+    }
+
     public void OnMove(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<Vector2>();
@@ -173,7 +175,6 @@ public class MovePlayer1 : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        // Solo saltar si se presiona Espacio, está en el suelo y NO está escalando
         if (context.started && isGrounded && !isClimbing)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -185,7 +186,6 @@ public class MovePlayer1 : MonoBehaviour
         }
     }
 
-    // Dibujar la esferita del GroundCheck en el editor para poder verla
     private void OnDrawGizmosSelected()
     {
         if (groundCheck != null)
