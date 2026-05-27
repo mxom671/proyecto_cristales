@@ -2,47 +2,64 @@ using UnityEngine;
 
 public class KillZone : MonoBehaviour
 {
-    [Header("Configuración de Audio")]
-    [Tooltip("Arrastra aquí el archivo de sonido (.mp3 o l .wav) para cuando se queme")]
-    public AudioClip sonidoQuemadura;
+    public int daño = 1;
+    public float fuerzaDeRebote = 10f;
+    public float fuerzaEmpujeAtras = 8f; // <-- NUEVO: Qué tan fuerte te avienta hacia atrás
+
+    [Header("Configuración de Respawn")]
+    public Transform puntoDeSpawn;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+            // 1. Quitamos vida
             PlayerStats stats = other.GetComponent<PlayerStats>();
-
             if (stats != null)
             {
-                // 1. 🎵 Sonido de quemadura
-                AudioSource audioJugador = other.GetComponent<AudioSource>();
-                if (audioJugador != null && sonidoQuemadura != null)
-                {
-                    audioJugador.PlayOneShot(sonidoQuemadura);
-                }
+                stats.RecibirDaño(daño);
+            }
 
-                // 2. ❤️ Restar vida
-                stats.RecibirDaño(1);
+            // 2. Buscamos el script de movimiento
+            MovePlayer_Maria motor = other.GetComponent<MovePlayer_Maria>();
 
-                // 3. 🏃‍♀️ ¡RETROCESO MÁS LARGO! (Solo si sigue viva)
-                if (stats.vidas > 0)
+            // SI ES LAVA: Hace el rebote con empujón hacia atrás
+            if (gameObject.CompareTag("Lava"))
+            {
+                if (motor != null)
                 {
+                    // Aplicamos el salto vertical que ya tenías
+                    motor.AplicarImpulsoLava(fuerzaDeRebote);
+
+                    // 💥 NUEVO: Calculamos la dirección de empujón (dirección contraria a la que mira la muñeca)
+                    Vector3 direccionEmpuje = -other.transform.forward;
+                    direccionEmpuje.y = 0; // Nos aseguramos de que el empujón sea horizontal
+                    direccionEmpuje.Normalize();
+
+                    // Buscamos el CharacterController para moverla a la fuerza hacia atrás
                     CharacterController controller = other.GetComponent<CharacterController>();
-                    if (controller != null) controller.enabled = false;
-
-                    Vector3 posicionSegura = other.transform.position;
-
-                    // --- AQUÍ MODIFICAMOS EL EMPUJE ---
-                    posicionSegura.y += 3.5f; // La levanta más alto (antes era 2.0f)
-                    posicionSegura -= other.transform.forward * 4.0f; // La echa bastante más atrás (antes era 1.5f)
-                    // ----------------------------------
-
-                    other.transform.position = posicionSegura;
-
-                    if (controller != null) controller.enabled = true;
-
-                    Debug.Log("🔥 ¡Empujón largo aplicado! Jugador fuera de la lava.");
+                    if (controller != null)
+                    {
+                        // La mandamos volando hacia atrás un breve instante
+                        controller.Move(direccionEmpuje * fuerzaEmpujeAtras);
+                    }
                 }
+                Debug.Log("¡Boing! Rebote ardiente con empujón hacia atrás.");
+            }
+            // SI ES CAÍDA AL VACÍO: Teletransporte directo al checkpoint
+            else
+            {
+                if (puntoDeSpawn != null)
+                {
+                    other.transform.position = puntoDeSpawn.position;
+
+                    Rigidbody rb = other.GetComponent<Rigidbody>();
+                    if (rb != null)
+                    {
+                        rb.linearVelocity = Vector3.zero;
+                    }
+                }
+                Debug.Log("¡Caída libre! Teletransportado al inicio.");
             }
         }
     }

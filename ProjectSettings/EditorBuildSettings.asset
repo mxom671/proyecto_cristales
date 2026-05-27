@@ -12,13 +12,13 @@ EditorBuildSettings:
     path: Assets/GAME/Scenes/Selva-Arrecife (KEVIN).unity
     guid: eeb947f669e90c443b30758bbe6f2003
   - enabled: 1
-    path: Assets/GAME/Scenes/Escena 2.unity
-    guid: ff03c9f3f834f9349a49aa16601428a1
+    path: Assets/GAME/Scenes/isla-ana.unity
+    guid: 1d04bbd05e8bad34fbabf2964bf4bb27
   - enabled: 1
     path: Assets/GAME/Scenes/Cuevas-Nucleo (MARIA).unity
     guid: e663a9b0175e19c44acb9f62271fe8d4
   - enabled: 1
-    path: Assets/GAME/Scenes/Tiempo-Despegue (DANI).unity
-    guid: 15232b9e107413643a36f8ab56a677fd
+    path: Assets/GAME/Scenes/Despegue_Dani.unity
+    guid: 4f1d2e0fc25e53b488b8edd28d9f3f5c
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
