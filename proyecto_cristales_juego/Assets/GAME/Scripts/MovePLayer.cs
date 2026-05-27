@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class MovePlayer : MonoBehaviour
 {
@@ -10,10 +9,9 @@ public class MovePlayer : MonoBehaviour
     public float velocidadGiro = 10.0f;
 
     [Header("Configuración de Respawn")]
-    public float limiteCaida = -15.0f; // Altura a la que el personaje "muere"
-    public Vector3 puntoDeInicio;    // Posición de reaparición
+    public float limiteCaida = -15.0f;
+    public Vector3 puntoDeInicio;
 
-    private Vector2 movementInput;
     private Vector3 velocidadVertical;
     private Animator animator;
     private CharacterController controller;
@@ -22,35 +20,44 @@ public class MovePlayer : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
-
-        // Al iniciar, guardamos la posición actual como el punto de inicio
         puntoDeInicio = transform.position;
     }
 
     public void Update()
     {
-        // 1. Detectar si está en el suelo
+        // Evaluamos si está firmemente en el suelo de Unity
         bool estaEnElSuelo = controller.isGrounded;
 
         if (estaEnElSuelo)
         {
+            // Si está en el suelo y cayendo, frenamos la fuerza de gravedad acumulada
             if (velocidadVertical.y < 0)
             {
                 velocidadVertical.y = -2f;
             }
-
-            // Limpiamos el Trigger de salto al tocar el suelo para evitar dobles saltos raros
             if (animator != null) animator.ResetTrigger("Salto");
         }
 
-        // 2. SISTEMA DE RESPAWN (Si cae al vacío)
         if (transform.position.y < limiteCaida)
         {
             EjecutarRespawn();
         }
 
-        // 3. Movimiento Horizontal
-        Vector3 direction = new Vector3(movementInput.x, 0, movementInput.y);
+        // --- SISTEMA DE TECLADO ---
+        float moverHorizontal = 0f;
+        float moverVertical = 0f;
+
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) moverVertical = 1f;
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) moverVertical = -1f;
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) moverHorizontal = -1f;
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) moverHorizontal = 1f;
+
+        Vector3 direction = new Vector3(moverHorizontal, 0f, moverVertical).normalized;
+
+        if (animator != null)
+        {
+            animator.SetFloat("Blend", direction.magnitude);
+        }
 
         if (direction.magnitude > 0.1f)
         {
@@ -60,33 +67,32 @@ public class MovePlayer : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * velocidadGiro);
         }
 
-        // 4. SALTO MANUAL
-        if (Keyboard.current.spaceKey.wasPressedThisFrame && estaEnElSuelo)
+        // --- SALTO ÚNICO CALIBRADO ---
+        // Solo permite saltar si isGrounded es estrictamente verdadero
+        if (Input.GetKeyDown(KeyCode.Space) && estaEnElSuelo)
         {
-            velocidadVertical.y = Mathf.Sqrt(fuerzaSalto * -2f * gravedad);
+            velocidadVertical.y = fuerzaSalto;
             if (animator != null) animator.SetTrigger("Salto");
         }
 
-        // 5. Aplicar Gravedad
+        // Aplicar Gravedad (Siempre va hacia abajo)
         velocidadVertical.y += gravedad * Time.deltaTime;
+
+        // Movemos verticalmente al personaje
         controller.Move(velocidadVertical * Time.deltaTime);
 
-        // 6. Animaciones
         if (animator != null)
         {
-            animator.SetFloat("Blend", movementInput.magnitude);
             animator.SetBool("EstaEnElSuelo", estaEnElSuelo);
         }
     }
 
     public void EjecutarRespawn()
     {
-        // Para teletransportar un CharacterController, debemos apagarlo y prenderlo
         controller.enabled = false;
         transform.position = puntoDeInicio;
-        velocidadVertical = Vector3.zero; // Reseteamos la velocidad de caída
+        velocidadVertical = Vector3.zero;
         controller.enabled = true;
-
         Debug.Log("¡X Bot ha vuelto al inicio!");
     }
 
@@ -94,10 +100,5 @@ public class MovePlayer : MonoBehaviour
     {
         velocidadVertical.y = fuerza;
         if (animator != null) animator.SetTrigger("Salto");
-    }
-
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        movementInput = context.ReadValue<Vector2>();
     }
 }

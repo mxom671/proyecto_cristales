@@ -2,52 +2,47 @@ using UnityEngine;
 
 public class KillZone : MonoBehaviour
 {
-    public int daño = 1;
-    public float fuerzaDeRebote = 15f;
-
-    [Header("Configuración de Respawn")]
-    public Transform puntoDeSpawn; // <-- Arrastra aquí tu CheckPoint_Inicio
+    [Header("Configuración de Audio")]
+    [Tooltip("Arrastra aquí el archivo de sonido (.mp3 o l .wav) para cuando se queme")]
+    public AudioClip sonidoQuemadura;
 
     private void OnTriggerEnter(Collider other)
     {
-        // Si lo que tocó este detector es el jugador
         if (other.CompareTag("Player"))
         {
-            // 1. Buscamos sus estadísticas para quitarle vida
             PlayerStats stats = other.GetComponent<PlayerStats>();
+
             if (stats != null)
             {
-                stats.RecibirDaño(daño);
-            }
-
-            // 2. Buscamos su script de movimiento
-            MovePlayer1 motor = other.GetComponent<MovePlayer1>();
-
-            // SI ESTE SCRIPT ESTÁ EN LA LAVA: hace el rebote
-            if (gameObject.CompareTag("Lava"))
-            {
-                if (motor != null)
+                // 1. 🎵 Sonido de quemadura
+                AudioSource audioJugador = other.GetComponent<AudioSource>();
+                if (audioJugador != null && sonidoQuemadura != null)
                 {
-                    motor.AplicarImpulsoLava(fuerzaDeRebote);
+                    audioJugador.PlayOneShot(sonidoQuemadura);
                 }
-                Debug.Log("¡Boing! Rebote en la lava");
-            }
-            // SI ESTE SCRIPT ESTÁ EN LA ZONA DE MUERTE (CAÍDA AL VACÍO): reaparece
-            else
-            {
-                if (puntoDeSpawn != null)
-                {
-                    // Teletransportamos al jugador a la posición del checkpoint
-                    other.transform.position = puntoDeSpawn.position;
 
-                    // Si el jugador tiene físicas activas, frenamos su caída para que no aparezca cayendo rápido
-                    Rigidbody rb = other.GetComponent<Rigidbody>();
-                    if (rb != null)
-                    {
-                        rb.linearVelocity = Vector3.zero;
-                    }
+                // 2. ❤️ Restar vida
+                stats.RecibirDaño(1);
+
+                // 3. 🏃‍♀️ ¡RETROCESO MÁS LARGO! (Solo si sigue viva)
+                if (stats.vidas > 0)
+                {
+                    CharacterController controller = other.GetComponent<CharacterController>();
+                    if (controller != null) controller.enabled = false;
+
+                    Vector3 posicionSegura = other.transform.position;
+
+                    // --- AQUÍ MODIFICAMOS EL EMPUJE ---
+                    posicionSegura.y += 3.5f; // La levanta más alto (antes era 2.0f)
+                    posicionSegura -= other.transform.forward * 4.0f; // La echa bastante más atrás (antes era 1.5f)
+                    // ----------------------------------
+
+                    other.transform.position = posicionSegura;
+
+                    if (controller != null) controller.enabled = true;
+
+                    Debug.Log("🔥 ¡Empujón largo aplicado! Jugador fuera de la lava.");
                 }
-                Debug.Log("¡Caída libre! Teletransportado al inicio");
             }
         }
     }
