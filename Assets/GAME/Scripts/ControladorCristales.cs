@@ -21,25 +21,24 @@ public class ControladorCristales : MonoBehaviour
     [Header("Configuración de Audio")]
     public AudioClip sonidoRecoleccion;
 
-    // 📋 NUEVO: Lista para guardar TODOS los cristales que estén en nuestro rango
+    // Lista para guardar los cristales en nuestro rango
     private List<GameObject> cristalesEnRango = new List<GameObject>();
 
     private void Update()
     {
-        // Si presionamos la E y tenemos al menos un cristal en la lista...
         if (Input.GetKeyDown(KeyCode.E) && cristalesEnRango.Count > 0)
         {
-            // Limpiamos la lista por si algún cristal se destruyó antes de tiempo
+            // Limpieza rápida de seguridad
             cristalesEnRango.RemoveAll(item => item == null);
 
             if (cristalesEnRango.Count > 0)
             {
-                // Buscamos el cristal que esté más cerca físicamente por distancia
+                // Buscamos el cristal más cercano que NO esté en la espalda
                 GameObject cristalMasCercano = ObtenerCristalMasCercano();
 
                 if (cristalMasCercano != null)
                 {
-                    Debug.Log("⌨️ Recogiendo el cristal más cercano: " + cristalMasCercano.name);
+                    Debug.Log("⌨️ Recogiendo cristal válido: " + cristalMasCercano.name);
                     Recolectar(cristalMasCercano);
                 }
             }
@@ -50,7 +49,6 @@ public class ControladorCristales : MonoBehaviour
     {
         if (other.CompareTag("Cristal"))
         {
-            // Si entramos a la zona del cristal, lo sumamos a la lista de espera
             if (!cristalesEnRango.Contains(other.gameObject))
             {
                 cristalesEnRango.Add(other.gameObject);
@@ -63,7 +61,6 @@ public class ControladorCristales : MonoBehaviour
     {
         if (other.CompareTag("Cristal"))
         {
-            // Si nos alejamos, lo sacamos de la lista
             if (cristalesEnRango.Contains(other.gameObject))
             {
                 cristalesEnRango.Remove(other.gameObject);
@@ -72,7 +69,7 @@ public class ControladorCristales : MonoBehaviour
         }
     }
 
-    // Función matemática para encontrar el cristal más cercano a la muñeca
+    // FUNCIÓN MEJORADA: Permite agarrar en 180° frontales/laterales, pero BLOQUEA la espalda atrás
     private GameObject ObtenerCristalMasCercano()
     {
         GameObject masCercano = null;
@@ -83,11 +80,21 @@ public class ControladorCristales : MonoBehaviour
         {
             if (cristal != null)
             {
-                float distancia = Vector3.Distance(cristal.transform.position, posicionActual);
-                if (distancia < distanciaMinima)
+                // 1. Conseguimos la dirección hacia el cristal
+                Vector3 direccionAlCristal = (cristal.transform.position - posicionActual).normalized;
+
+                // 2. Calculamos si está al frente o a los lados usando el frente del jugador (transform.forward)
+                // Si da menor o igual a 0, significa que el cristal está físicamente detrás de su espalda.
+                float relacionDireccion = Vector3.Dot(transform.forward, direccionAlCristal);
+
+                if (relacionDireccion >= -0.1f) // Al poner -0.1f permitimos los lados y diagonales, pero NADA atrás
                 {
-                    distanciaMinima = distancia;
-                    masCercano = cristal;
+                    float distancia = Vector3.Distance(cristal.transform.position, posicionActual);
+                    if (distancia < distanciaMinima)
+                    {
+                        distanciaMinima = distancia;
+                        masCercano = cristal;
+                    }
                 }
             }
         }
@@ -112,7 +119,6 @@ public class ControladorCristales : MonoBehaviour
         if (textoCantidad != null) textoCantidad.text = "Cantidad: " + inventarioEscena.Count;
         if (textoInventario != null) textoInventario.text = "Último: " + cristalObj.name;
 
-        // Lo sacamos de la lista antes de borrarlo del mapa
         cristalesEnRango.Remove(cristalObj);
         Destroy(cristalObj);
 

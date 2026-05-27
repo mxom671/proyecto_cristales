@@ -4,6 +4,21 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/GAME/Scenes/Menu.unity
+    guid: 53c835401be871146b71c14098096e8c
+  - enabled: 1
+    path: Assets/GAME/Scenes/Selva-Arrecife (KEVIN).unity
+    guid: eeb947f669e90c443b30758bbe6f2003
+  - enabled: 1
+    path: Assets/GAME/Scenes/Escena 2.unity
+    guid: ff03c9f3f834f9349a49aa16601428a1
+  - enabled: 1
+    path: Assets/GAME/Scenes/Cuevas-Nucleo (MARIA).unity
+    guid: e663a9b0175e19c44acb9f62271fe8d4
+  - enabled: 1
+    path: Assets/GAME/Scenes/Tiempo-Despegue (DANI).unity
+    guid: 15232b9e107413643a36f8ab56a677fd
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

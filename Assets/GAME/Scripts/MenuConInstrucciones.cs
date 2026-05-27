@@ -12,7 +12,7 @@ public class MenuConInstrucciones : MonoBehaviour
 
     [Header("Configuracion de Carga de Escena")]
     // ¡ESTA ES LA CASILLA QUE VA A APARECER EN TU INSPECTOR A LA DERECHA!
-    public string nombreEscenaAClargar = "Nivel1";
+    public string nombreEscenaAClargar = "Selva-Arrecife (KEVIN)";
 
     void Start()
     {
@@ -21,7 +21,7 @@ public class MenuConInstrucciones : MonoBehaviour
         if (subPanelInstrucciones != null) subPanelInstrucciones.SetActive(false);
 
         // Congelamos el juego al principio para que lean tranquilos
-        Time.timeScale = 0f;
+       // Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
