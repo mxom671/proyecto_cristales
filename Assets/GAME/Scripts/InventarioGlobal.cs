@@ -1,10 +1,12 @@
 using UnityEngine;
-using System.Collections.Generic;
-using System.IO; // Necesario para manejar archivos
+using System.IO;
+using System.Collections.Generic; // Obligatorio para usar List<>
 
 public class InventarioGlobal : MonoBehaviour
 {
     public static InventarioGlobal instancia;
+
+    [Header("Datos del Inventario")]
     public List<string> cristalesGuardados = new List<string>();
 
     private string rutaArchivo;
@@ -15,8 +17,16 @@ public class InventarioGlobal : MonoBehaviour
         {
             instancia = this;
             DontDestroyOnLoad(gameObject);
-            // Definimos la ruta donde se guardará el JSON
-            rutaArchivo = Application.persistentDataPath + "/progreso.json";
+
+            // 📂 Definimos la ruta apuntando a StreamingAssets
+            rutaArchivo = Path.Combine(Application.streamingAssetsPath, "progreso.json");
+
+            // 🛡️ SEGURO DE VIDA: Si la carpeta StreamingAssets no existe, la crea automáticamente
+            if (!Directory.Exists(Application.streamingAssetsPath))
+            {
+                Directory.CreateDirectory(Application.streamingAssetsPath);
+            }
+
             CargarProgreso(); // Intentamos cargar al iniciar
         }
         else
@@ -28,14 +38,19 @@ public class InventarioGlobal : MonoBehaviour
     // --- REQUISITO: ESCRITURA DE JSON ---
     public void GuardarProgreso()
     {
-        // Convertimos la lista a un formato que JSON entienda (una clase contenedora)
+        // Convertimos la lista a un formato que JSON entienda (la clase contenedora)
         DatosProgreso datos = new DatosProgreso();
         datos.cristales = cristalesGuardados;
 
         string json = JsonUtility.ToJson(datos, true);
         File.WriteAllText(rutaArchivo, json);
 
-        Debug.Log("Juego Guardado en: " + rutaArchivo);
+        Debug.Log("Juego Guardado en StreamingAssets: " + rutaArchivo);
+
+        // Hace que el archivo aparezca inmediatamente en la carpeta de Unity sin tener que reiniciar el programa
+#if UNITY_EDITOR
+        UnityEditor.AssetDatabase.Refresh();
+#endif
     }
 
     // --- REQUISITO: LECTURA DE JSON ---
@@ -47,7 +62,11 @@ public class InventarioGlobal : MonoBehaviour
             DatosProgreso datos = JsonUtility.FromJson<DatosProgreso>(json);
 
             cristalesGuardados = datos.cristales;
-            Debug.Log("Progreso cargado del JSON.");
+            Debug.Log("Progreso cargado con éxito desde StreamingAssets.");
+        }
+        else
+        {
+            Debug.LogWarning("No se encontró archivo JSON previo, se iniciará un inventario nuevo.");
         }
     }
 }

@@ -9599,8 +9599,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7057fab3f49002f4587c6e17773a89a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Scene4Manager
-  tiempoLimite: 90
-  slotsNecesarios: 5
+  tiempoLimite: 10
+  slotsNecesarios: 1
   textoTiempo: {fileID: 1842389556}
   panelVictoria: {fileID: 1877714991}
   panelDerrota: {fileID: 2086548288}
@@ -24967,6 +24967,10 @@ PrefabInstance:
       propertyPath: avisoDespegue
       value: 
       objectReference: {fileID: 2029361882}
+    - target: {fileID: 3489806327742889909, guid: 455178f2714a90f4c80bb88de0fdd768, type: 3}
+      propertyPath: metaCristales
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3489806327742889909, guid: 455178f2714a90f4c80bb88de0fdd768, type: 3}
       propertyPath: textoCantidad
       value: 
