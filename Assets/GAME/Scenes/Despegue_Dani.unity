@@ -1572,6 +1572,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19818464, guid: 496fa247adc61d44ebaeaf9d72671287, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19818464, guid: 496fa247adc61d44ebaeaf9d72671287, type: 3}
       propertyPath: ShapeModule.radius.value
       value: 1.09
       objectReference: {fileID: 0}
@@ -3802,6 +3806,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventarioGlobal
   cristalesGuardados: []
+  vidasActuales: 3
+  tiempoActual: 0
+  ultimaEscena: 
 --- !u!4 &287560338
 Transform:
   m_ObjectHideFlags: 0
@@ -4293,6 +4300,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6455062, guid: 496fa247adc61d44ebaeaf9d72671287, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19818464, guid: 496fa247adc61d44ebaeaf9d72671287, type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19818464, guid: 496fa247adc61d44ebaeaf9d72671287, type: 3}
@@ -10010,7 +10021,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Scene4Manager
   tiempoLimite: 60
   slotsNecesarios: 5
-  tiempoEsperaMenu: 3.5
+  tiempoEsperaMenu: 5
   textoTiempo: {fileID: 1842389556}
   panelVictoria: {fileID: 1877714991}
   panelDerrota: {fileID: 2086548288}
@@ -12946,6 +12957,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6455062, guid: 496fa247adc61d44ebaeaf9d72671287, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19818464, guid: 496fa247adc61d44ebaeaf9d72671287, type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19818464, guid: 496fa247adc61d44ebaeaf9d72671287, type: 3}
@@ -21201,6 +21216,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19818464, guid: 496fa247adc61d44ebaeaf9d72671287, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19818464, guid: 496fa247adc61d44ebaeaf9d72671287, type: 3}
       propertyPath: ShapeModule.radius.value
       value: 1.09
       objectReference: {fileID: 0}
@@ -23909,6 +23928,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6455062, guid: 496fa247adc61d44ebaeaf9d72671287, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19818464, guid: 496fa247adc61d44ebaeaf9d72671287, type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19818464, guid: 496fa247adc61d44ebaeaf9d72671287, type: 3}
