@@ -888,10 +888,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb48707ae2f0d0042a9f5570a4ac831e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuConInstrucciones
-  panelMenuPrincipal: {fileID: 4808352168446008668}
-  panelGameOver: {fileID: 5960610199918322857}
-  subPanelInstrucciones: {fileID: 4913501625463214850}
-  nombreEscenaAClargar: Selva-Arrecife (KEVIN)
+  panelMaderaTutorial: {fileID: 0}
+  botonTutorialQuit: {fileID: 0}
 --- !u!1 &7122719068535465324
 GameObject:
   m_ObjectHideFlags: 0
@@ -1474,10 +1472,5 @@ PrefabInstance:
 --- !u!224 &5165057506583004044 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 582326331641928820, guid: e557620c71fcb19478c39f9d17b2ec78, type: 3}
-  m_PrefabInstance: {fileID: 5744674310715858936}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5960610199918322857 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2090085551279733585, guid: e557620c71fcb19478c39f9d17b2ec78, type: 3}
   m_PrefabInstance: {fileID: 5744674310715858936}
   m_PrefabAsset: {fileID: 0}

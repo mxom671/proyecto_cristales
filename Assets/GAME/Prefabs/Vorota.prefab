@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2679220340258838341
 Transform:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4166091940456552021
 Transform:
   m_ObjectHideFlags: 0
@@ -402,9 +402,6 @@ MonoBehaviour:
   fuenteAudioApertura: {fileID: 2458559532561010989}
   sonidoListo: {fileID: 0}
   sonidoActivacion: {fileID: 0}
-  sonidoGoznesChirriando: {fileID: 0}
-  sonidoMecanico: {fileID: 0}
-  fuenteAudioViaje: {fileID: 0}
   sonidoWhoosh: {fileID: 0}
   sonidoEpico: {fileID: 0}
 --- !u!1001 &8688562552656163521
@@ -431,6 +428,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 4ee9c00dfffef524a81dce8cfbfeac46, type: 2}
+    - target: {fileID: 7358200613666241597, guid: 16a3c9a9090c8724c88930c9d31291cc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.68244
+      objectReference: {fileID: 0}
+    - target: {fileID: 7358200613666241597, guid: 16a3c9a9090c8724c88930c9d31291cc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.47811
+      objectReference: {fileID: 0}
     - target: {fileID: 7358200613666241597, guid: 16a3c9a9090c8724c88930c9d31291cc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.4999976

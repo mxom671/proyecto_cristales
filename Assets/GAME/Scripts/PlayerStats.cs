@@ -1,5 +1,5 @@
 using UnityEngine;
-using TMPro; // Para usar TextMeshPro
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
@@ -8,14 +8,19 @@ public class PlayerStats : MonoBehaviour
     public int vidas = 3;
 
     [Header("Componentes de Interfaz")]
-    public TextMeshProUGUI textoVidas; // Arrastra aquí el nuevo texto de vidas
-    public GameObject panelGameOver;   // <-- NUEVO: Aquí arrastraremos el cartel rojo
+    public TextMeshProUGUI textoVidas;
+    public GameObject panelGameOver;
 
     void Start()
     {
+        // 🔴 NUEVO: Si hay vidas guardadas en el JSON, empezamos con esas en vez de restaurar a 3
+        if (InventarioGlobal.instancia != null)
+        {
+            vidas = InventarioGlobal.instancia.vidasActuales;
+        }
+
         ActualizarInterfaz();
 
-        // Nos aseguramos de que el panel empiece escondido al iniciar
         if (panelGameOver != null)
         {
             panelGameOver.SetActive(false);
@@ -24,15 +29,22 @@ public class PlayerStats : MonoBehaviour
 
     public void RecibirDaño(int cantidad)
     {
-        // 🛡️ ESCUDO: Si ya no tienes vidas, ignora por completo cualquier daño extra
         if (vidas <= 0) return;
 
         vidas -= cantidad;
+
+        // 🔴 NUEVO: Le actualizamos el dato al JSON inmediatamente al recibir daño
+        if (InventarioGlobal.instancia != null)
+        {
+            InventarioGlobal.instancia.vidasActuales = vidas;
+            InventarioGlobal.instancia.GuardarProgreso(); // Lo escribe en el archivo
+        }
+
         ActualizarInterfaz();
 
         if (vidas <= 0)
         {
-            vidas = 0; // Asegura que el marcador de la interfaz se quede clavado en 0
+            vidas = 0;
             ActualizarInterfaz();
 
             Debug.Log("¡GAME OVER!");

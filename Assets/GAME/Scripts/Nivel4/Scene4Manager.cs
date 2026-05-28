@@ -8,7 +8,7 @@ public class Scene4Manager : MonoBehaviour
     public static Scene4Manager Instance;
 
     [Header("Configuración del Tiempo (Escena 4)")]
-    [SerializeField] private float tiempoLimite = 90f; // Tiempo en segundos antes de la explosión
+    [SerializeField] private float tiempoLimite = 90f;
     private float tiempoRestante;
     private bool juegoTerminado = false;
 
@@ -16,20 +16,22 @@ public class Scene4Manager : MonoBehaviour
     [SerializeField] private int slotsNecesarios = 5;
     private int slotsActivados = 0;
 
-    [Header("Referencias de Interfaz (UI Canvas)")]
-    public TextMeshProUGUI textoTiempo;     // Texto en Canvas para el cronómetro (reloj)
-    public GameObject panelVictoria;        // Panel UI de Escape Exitoso (Victoria)
-    public GameObject panelDerrota;         // Panel UI de Misión Fallida (Derrota)
+    [Header("Cinemática de Victoria")]
+    [Tooltip("Tiempo en segundos que esperará el juego DESPUÉS de activar la nave para mostrar el Menú de Victoria.")]
+    public float tiempoEsperaMenu = 3.5f;
 
+    [Header("Referencias de Interfaz (UI Canvas)")]
+    public TextMeshProUGUI textoTiempo;
+    public GameObject panelVictoria;
+    public GameObject panelDerrota;
     public TextMeshProUGUI textoEstadisticaVictoria;
 
     [Header("Objetos de la Escena 4")]
-    public GameObject naveEscape;           // Tu objeto de la nave (Federation Corvette F3)
-    public GameObject efectoExplosion;      // Sistema de partículas para simular la explosión por tiempo
+    public GameObject naveEscape;
+    public GameObject efectoExplosion;
 
     private void Awake()
     {
-        // Tu estructura de Singleton defensiva local para tu escena
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -42,7 +44,6 @@ public class Scene4Manager : MonoBehaviour
     {
         tiempoRestante = tiempoLimite;
 
-        // Configurar los estados iniciales de los objetos en tu escena
         if (naveEscape != null) naveEscape.SetActive(false);
         if (panelVictoria != null) panelVictoria.SetActive(false);
         if (panelDerrota != null) panelDerrota.SetActive(false);
@@ -53,7 +54,6 @@ public class Scene4Manager : MonoBehaviour
     {
         if (juegoTerminado) return;
 
-        // Cuenta regresiva del tiempo crítico
         if (tiempoRestante > 0)
         {
             tiempoRestante -= Time.deltaTime;
@@ -67,14 +67,12 @@ public class Scene4Manager : MonoBehaviour
         }
     }
 
-    // Este método lo llamará cada contenedor de forma individual al recibir un cristal
     public void RegistrarSlotActivado()
     {
         if (juegoTerminado) return;
 
         slotsActivados += 1;
 
-        // Si se llenaron los 5 depósitos se activa la victoria
         if (slotsActivados >= slotsNecesarios)
         {
             SimularVictoria();
@@ -94,42 +92,50 @@ public class Scene4Manager : MonoBehaviour
     void SimularVictoria()
     {
         juegoTerminado = true;
-        
-        if (naveEscape != null) naveEscape.SetActive(true);
-        if (panelVictoria != null) panelVictoria.SetActive(true);
 
-        // --- AÑADE ESTA LÓGICA DE TEXTO AQUÍ ---
+        // 1. Activamos la nave INMEDIATAMENTE para que pase lo que tenga que pasar en el mapa
+        if (naveEscape != null)
+        {
+            naveEscape.SetActive(true);
+        }
+
+        Debug.Log("<color=green>Escena 4:</color> ¡Nave activada! Esperando para mostrar el menú...");
+
+        // 2. Retrasamos la aparición del menú usando Invoke para que se vea la nave primero
+        Invoke("MostrarMenuVictoriaEfectivo", tiempoEsperaMenu);
+    }
+
+    // Esta función se ejecutará después de que pasen los segundos de espera
+    void MostrarMenuVictoriaEfectivo()
+    {
+        if (panelVictoria != null)
+        {
+            panelVictoria.SetActive(true);
+        }
+
         if (textoEstadisticaVictoria != null)
         {
-            // Calculamos cuánto tiempo le tomó (Tiempo Limite - Tiempo Restante)
-            // Usamos Mathf.Round para que quede con un decimal limpio, tal como te gusta programar
             float tiempoEmpleado = Mathf.Round((tiempoLimite - tiempoRestante) * 10f) / 10f;
-            
-            // Cambia el texto para mostrar la estadística estilizada
             textoEstadisticaVictoria.text = $"Misión completada en: <color=yellow>{tiempoEmpleado}s</color>\n" +
                                             $"Tiempo restante: <color=green>{Mathf.Round(tiempoRestante * 10f) / 10f}s</color>";
         }
-
-        Debug.Log("<color=green>Escena 4:</color> ¡Todos los nexos cargados! Nave lista.");
     }
 
     void SimularDerrota()
     {
         juegoTerminado = true;
 
-        if (efectoExplosion != null) efectoExplosion.SetActive(true); // La nave falla y explota
+        if (efectoExplosion != null) efectoExplosion.SetActive(true);
         if (panelDerrota != null) panelDerrota.SetActive(true);
 
         Debug.Log("<color=red>Escena 4:</color> Tiempo agotado. Explosión de la nave.");
     }
 
-    // Función lista para asignársela al botón de "Reiniciar" en tu UI de derrota
     public void ReiniciarNivel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    // --- TUS PROPIEDADES GETTERS EN FLECHA ---
     public float TiempoRestante => tiempoRestante;
     public int SlotsActivados => slotsActivados;
     public bool JuegoTerminado => juegoTerminado;

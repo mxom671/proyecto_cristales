@@ -86,6 +86,17 @@ public class PortalSalida : MonoBehaviour
 
     IEnumerator SecuenciaTeletransporte()
     {
+        // 🎬 ¡NUEVO Y MAGNÍFICO!: Antes de viajar, guardamos los datos definitivos en el JSON
+        if (InventarioGlobal.instancia != null)
+        {
+            // 1. Captura el nombre de la escena actual (ej: "Selva-Arrecife (KEVIN)")
+            InventarioGlobal.instancia.ultimaEscena = SceneManager.GetActiveScene().name;
+
+            // 2. Obligamos al sistema a escribir en el archivo para no perder el tiempo acumulado
+            InventarioGlobal.instancia.GuardarProgreso();
+            Debug.Log("🎬 Escena pasada guardada con éxito en el JSON: " + InventarioGlobal.instancia.ultimaEscena);
+        }
+
         // Reproducir sonidos flotantes que no se cortan al cambiar de escena
         if (sonidoWhoosh != null) AudioSource.PlayClipAtPoint(sonidoWhoosh, transform.position);
         if (sonidoEpico != null) AudioSource.PlayClipAtPoint(sonidoEpico, transform.position);

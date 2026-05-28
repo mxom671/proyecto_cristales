@@ -5,13 +5,25 @@ public class ItemRecogible : MonoBehaviour
     [Header("Configuración del Cristal")]
     public string nombreDelItem = "Cristal de Nucleo";
 
+    [Header("Efecto de Sonido")]
+    public AudioClip sonidoRecoger; // 🔊 Arrastra aquí tu archivo de audio (.mp3 o .wav)
+
     private void OnTriggerEnter(Collider other)
     {
         // 1. Verificamos que sea la muñeca con su Tag
         if (other.CompareTag("Player"))
         {
-            // 2. 🚨 NUEVO: Buscamos el Controlador de Cristales en la escena y le sumamos 1
-            // Esto es lo que obligará a los textos de la interfaz a cambiar de número y abrir el portal
+            // 🔊 NUEVO: Si pusiste un sonido, lo reproduce en el lugar exacto antes de destruir el cristal
+            if (sonidoRecoger != null)
+            {
+                AudioSource.PlayClipAtPoint(sonidoRecoger, transform.position);
+            }
+            else
+            {
+                Debug.LogWarning("⚠️ ¡María! Olvidaste poner el archivo de sonido en el Inspector del cristal.");
+            }
+
+            // 2. Buscamos el Controlador de Cristales en la escena y le sumamos 1
             ControladorCristales controlador = Object.FindFirstObjectByType<ControladorCristales>();
             if (controlador != null)
             {
@@ -23,7 +35,7 @@ public class ItemRecogible : MonoBehaviour
                 Debug.LogError("🚨 ¡María! No se encontró el script ControladorCristales en la escena. Revisa si está en X Bot o GestorGlobal.");
             }
 
-            // 3. Guardamos en el archivo JSON de Kevin (Si el inventario global existe, lo guarda; si no, no rompe el juego)
+            // 3. Guardamos en el archivo JSON de Kevin
             if (InventarioGlobal.instancia != null)
             {
                 InventarioGlobal.instancia.cristalesGuardados.Add(nombreDelItem);
